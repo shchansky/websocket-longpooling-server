@@ -14,6 +14,7 @@ const app = express();
 
 /** добавление cors-middleware */
 app.use(cors());
+app.use(express.json());
 
 /** endpoint для get-запроса: 1-й параметр это маршрут, 2-й параметр это callback кот. будет отрабатывать по 1-му маршруту (параметрами принимает запрос и ответ) */
 app.get("/get-message", (req, res) => {
@@ -32,4 +33,4 @@ app.post("/new-message", (req, res) => {
 });
 
 /** слушатель 5000 порта, в случае успешного выполнения в логи будет выводиться сообщение */
-app.listen(PORT, () => console.log(`server start on port ${PORT}`));
+app.listen(PORT, () => console.log(`server started on port ${PORT}`));
