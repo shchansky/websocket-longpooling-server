@@ -14,6 +14,7 @@ const app = express();
 
 /** добавление cors-middleware */
 app.use(cors());
+/** подключение json-parser */
 app.use(express.json());
 
 /** endpoint для get-запроса: 1-й параметр это маршрут, 2-й параметр это callback кот. будет отрабатывать по 1-му маршруту (параметрами принимает запрос и ответ) */
