@@ -16,16 +16,16 @@ const app = express();
 app.use(cors());
 
 /** endpoint для get-запроса: 1-й параметр это маршрут, 2-й параметр это callback кот. будет отрабатывать по 1-му маршруту (параметрами принимает запрос и ответ) */
-app.get("get-message", (req, res) => {
-    /** осведомление участников чата, что пользователь отправил сообщение (т.к. метод once регистрирует событие "newMessage" и событие отрабатает лишь единожды) */
-    emitter.once("newMessage", (message) => {
+app.get("/get-message", (req, res) => {
+  /** осведомление участников чата, что пользователь отправил сообщение (т.к. метод once регистрирует событие "newMessage" и событие отрабатает лишь единожды) */
+  emitter.once("newMessage", (message) => {
     /** возвращаем ответ на кликент (всем пользователям у которых висит подключение, возвращается это сообщение */
-    res.json();
+    res.json(message);
   });
 });
 
 /** endpoint для post-запроса: 1-й параметр это маршрут, 2-й параметр это callback кот. будет отрабатывать по 1-му маршруту (параметрами принимает запрос и ответ) */
-app.post("new-message", (req, res) => {
+app.post("/new-message", (req, res) => {
   const message = req.body;
   emitter.emit("newMessage", message);
   res.status(200);
